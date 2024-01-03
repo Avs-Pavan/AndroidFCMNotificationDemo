@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "378372090754",
+    "project_id": "apolisfcmdemo",
+    "storage_bucket": "apolisfcmdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378372090754:android:3f8262b0addd7e104efd9b",
+        "android_client_info": {
+          "package_name": "com.kevin.androidfcmnotificationdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsj6vTS2-cIDBvJfIMi02ux0N_-0Zu4eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
