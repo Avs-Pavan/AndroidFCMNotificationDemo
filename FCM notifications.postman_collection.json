@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "32ca9fd9-b938-4a72-8466-d9ebe07b466a",
+		"name": "FCM notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "770862"
+	},
+	"item": [
+		{
+			"name": "Data payloadnotification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "key=AAAAWBi764I:APA91bGz0gd9m9DQ8jPplzJUys7bj09Rf_-hGuVAwqQIc0qVcWlufeWVkuM3mC0zCN84V-9MMS2kVYX-YE2CLa1KTOHJFIXJjXWk4H6jxSM4uRBZP_FMGMzWoGauJM6SOuNHUWUtaLRn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"to\": \"eNZSqG_3SnqTnXZzz1nhiK:APA91bHlPC0daB5503ToTVmxeHkDsP2c90exOVckZBHlYQTeU16hv1L9BjvBKSuS2PekW090IsZd6dDVbYVCOgC0thwATZZT7MqRSIsKkyVe1DNzwsWGtsCiZxu-qTBw95x6aRvzgnv1\",\n  \"data\": {\n    \"title\": \"Data payload\",\n    \"body\": \"Notification with data body\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Simple notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "key=AAAAWBi764I:APA91bGz0gd9m9DQ8jPplzJUys7bj09Rf_-hGuVAwqQIc0qVcWlufeWVkuM3mC0zCN84V-9MMS2kVYX-YE2CLa1KTOHJFIXJjXWk4H6jxSM4uRBZP_FMGMzWoGauJM6SOuNHUWUtaLRn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"to\": \"eNZSqG_3SnqTnXZzz1nhiK:APA91bHlPC0daB5503ToTVmxeHkDsP2c90exOVckZBHlYQTeU16hv1L9BjvBKSuS2PekW090IsZd6dDVbYVCOgC0thwATZZT7MqRSIsKkyVe1DNzwsWGtsCiZxu-qTBw95x6aRvzgnv1\",\n  \"notification\": {\n    \"title\": \"Simple Notification\",\n    \"body\": \"Simple Notification\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Composite notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "key=AAAAWBi764I:APA91bGz0gd9m9DQ8jPplzJUys7bj09Rf_-hGuVAwqQIc0qVcWlufeWVkuM3mC0zCN84V-9MMS2kVYX-YE2CLa1KTOHJFIXJjXWk4H6jxSM4uRBZP_FMGMzWoGauJM6SOuNHUWUtaLRn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"to\": \"eNZSqG_3SnqTnXZzz1nhiK:APA91bHlPC0daB5503ToTVmxeHkDsP2c90exOVckZBHlYQTeU16hv1L9BjvBKSuS2PekW090IsZd6dDVbYVCOgC0thwATZZT7MqRSIsKkyVe1DNzwsWGtsCiZxu-qTBw95x6aRvzgnv1\",\n  \"notification\": {\n    \"title\": \"Simple Notification\",\n    \"body\": \"Simple Notification\"\n  },\n  \"data\": {\n    \"title\": \"Data payload\",\n    \"body\": \"Notification with data body\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Topic notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "key=AAAAWBi764I:APA91bGz0gd9m9DQ8jPplzJUys7bj09Rf_-hGuVAwqQIc0qVcWlufeWVkuM3mC0zCN84V-9MMS2kVYX-YE2CLa1KTOHJFIXJjXWk4H6jxSM4uRBZP_FMGMzWoGauJM6SOuNHUWUtaLRn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"to\": \"/topics/fcm_topic\",\n  \"data\": {\n    \"title\": \"Data payload\",\n    \"body\": \"Notification with data body\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

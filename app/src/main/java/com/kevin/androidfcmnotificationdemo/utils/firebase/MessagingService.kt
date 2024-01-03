@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.util.Log
+import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -35,6 +36,7 @@ class MessagingService : FirebaseMessagingService() {
         sharedPreferencesEditor.putString(Constants.FCM_TOKEN_KEY, token).apply()
     }
 
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         Log.e(TAG, "From: ${remoteMessage.from}")
@@ -57,6 +59,7 @@ class MessagingService : FirebaseMessagingService() {
     companion object {
         const val TAG = "MessagingService"
     }
+
 
 
     private fun sendNotification(title: String, message: String) {

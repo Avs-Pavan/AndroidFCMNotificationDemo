@@ -1,5 +1,6 @@
 package com.kevin.androidfcmnotificationdemo.ui
 
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -11,13 +12,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.kevin.androidfcmnotificationdemo.FCMViewModel
+import com.kevin.androidfcmnotificationdemo.utils.requestNotificationPerm
 
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun HomeScreen() {
 
@@ -30,6 +38,19 @@ fun HomeScreen() {
     Toast.makeText(context, message.value, Toast.LENGTH_SHORT).show()
 
     Log.d("TAG", "HomeScreen: $message")
+
+
+    // Request notification permission for Android 12 and above
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        var permissionGranted by remember { mutableStateOf(false) }
+        val notificationPermission = requestNotificationPerm { permissionGranted = it }
+        LaunchedEffect(true, null) {
+            if (!permissionGranted) {
+                notificationPermission.launchPermissionRequest()
+            }
+        }
+    }
+
 
     Column(modifier = Modifier.padding(16.dp)) {
 
