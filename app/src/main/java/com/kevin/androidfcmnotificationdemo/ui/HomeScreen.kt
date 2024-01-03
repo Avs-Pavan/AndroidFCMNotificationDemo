@@ -4,7 +4,6 @@ import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.kevin.androidfcmnotificationdemo.FCMViewModel
+import com.kevin.androidfcmnotificationdemo.utils.eventbus.EventBus
 import com.kevin.androidfcmnotificationdemo.utils.requestNotificationPerm
 
 
@@ -35,10 +35,8 @@ fun HomeScreen() {
 
     val context = LocalContext.current
 
-    Toast.makeText(context, message.value, Toast.LENGTH_SHORT).show()
-
-    Log.d("TAG", "HomeScreen: $message")
-
+    if (message.value.isNotEmpty())
+        Toast.makeText(context, message.value, Toast.LENGTH_SHORT).show()
 
     // Request notification permission for Android 12 and above
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -50,6 +48,8 @@ fun HomeScreen() {
             }
         }
     }
+
+    val eventMessages = EventBus.events.collectAsState(initial = null)
 
 
     Column(modifier = Modifier.padding(16.dp)) {
@@ -114,5 +114,6 @@ fun HomeScreen() {
             Text(text = "Un-Subscribe from topic")
         }
 
+        Text(text = "Last notification received: ${eventMessages.value?.message}")
     }
 }

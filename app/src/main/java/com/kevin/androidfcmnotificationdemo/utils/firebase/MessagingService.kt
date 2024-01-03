@@ -14,6 +14,8 @@ import com.google.firebase.messaging.RemoteMessage
 import com.kevin.androidfcmnotificationdemo.MainActivity
 import com.kevin.androidfcmnotificationdemo.R
 import com.kevin.androidfcmnotificationdemo.di.Constants
+import com.kevin.androidfcmnotificationdemo.utils.eventbus.Event
+import com.kevin.androidfcmnotificationdemo.utils.eventbus.EventBus
 
 class MessagingService : FirebaseMessagingService() {
 
@@ -46,6 +48,7 @@ class MessagingService : FirebaseMessagingService() {
             Log.e(TAG, "Message data payload: ${remoteMessage.data}")
             remoteMessage.data.let {
                 sendNotification(it["title"].toString(), it["body"].toString())
+                EventBus.postEvent(Event(it["title"].toString()))
             }
         }
 
@@ -53,13 +56,14 @@ class MessagingService : FirebaseMessagingService() {
         remoteMessage.notification?.let {
             Log.e(TAG, "Message Notification Body: ${it.body}")
             sendNotification(it.title.toString(), it.body.toString())
+            EventBus.postEvent(Event(it.title.toString()))
+
         }
     }
 
     companion object {
         const val TAG = "MessagingService"
     }
-
 
 
     private fun sendNotification(title: String, message: String) {
