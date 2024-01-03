@@ -43,6 +43,23 @@ class MessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
         Log.e(TAG, "From: ${remoteMessage.from}")
 
+        /**
+         * Remote data payload
+         *
+         * POST - https://fcm.googleapis.com/fcm/send
+         *
+         * Content-Type:application/json
+         * Authorization:key="Your server key"
+         *
+         * {
+         *   "to": "eNZSqG_3SnqTnXZzz1nhiK:APA91bHlPC0daB5503ToTVmxeHkDsP2c90exOVckZBHlYQTeU16hv1L9BjvBKSuS2PekW090IsZd6dDVbYVCOgC0thwATZZT7MqRSIsKkyVe1DNzwsWGtsCiZxu-qTBw95x6aRvzgnv1",
+         *   "data": {
+         *     "title": "Data payload",
+         *     "body": "Notification with data body"
+         *   }
+         * }
+         * */
+
         // Check if message contains a data payload.
         if (remoteMessage.data.isNotEmpty()) {
             Log.e(TAG, "Message data payload: ${remoteMessage.data}")
@@ -52,18 +69,32 @@ class MessagingService : FirebaseMessagingService() {
             }
         }
 
+
+        /**
+         * Remote data payload
+         *
+         * POST - https://fcm.googleapis.com/fcm/send
+         *
+         * Content-Type:application/json
+         * Authorization:key="Your server key"
+         *
+         * {
+         *   "to": "eNZSqG_3SnqTnXZzz1nhiK:APA91bHlPC0daB5503ToTVmxeHkDsP2c90exOVckZBHlYQTeU16hv1L9BjvBKSuS2PekW090IsZd6dDVbYVCOgC0thwATZZT7MqRSIsKkyVe1DNzwsWGtsCiZxu-qTBw95x6aRvzgnv1",
+         *   "notification": {
+         *     "title": "Data payload",
+         *     "body": "Notification with data body"
+         *   }
+         * }
+         * */
+
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
             Log.e(TAG, "Message Notification Body: ${it.body}")
             sendNotification(it.title.toString(), it.body.toString())
             EventBus.postEvent(Event(it.title.toString()))
-
         }
     }
 
-    companion object {
-        const val TAG = "MessagingService"
-    }
 
 
     private fun sendNotification(title: String, message: String) {
@@ -102,6 +133,9 @@ class MessagingService : FirebaseMessagingService() {
         val notificationManager: NotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(System.currentTimeMillis().toInt(), notification.build())
+    }
+    companion object {
+        const val TAG = "MessagingService"
     }
 
 
