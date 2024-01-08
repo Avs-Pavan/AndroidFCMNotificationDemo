@@ -14,13 +14,20 @@ This Android application demonstrates various aspects of Firebase Cloud Messagin
    - Demonstrates the handling of FCM messages with both notification and data payloads.
 
 4. **Subscribe to Topic:**
-   - Allows the user to subscribe to an FCM topic and receive topic-specific notifications.
+   - Allows users to subscribe to an FCM topic and receive topic-specific notifications.
 
 5. **Send Notification to Topic:**
    - Sends an FCM notification to the subscribed topic using the app.
 
 6. **Unsubscribe from Topic:**
    - Lets the user unsubscribe from a previously subscribed FCM topic.
+     
+7. **SharedFlow:**
+   - Utilizes SharedFlow from the Kotlin Coroutines library for implementing an event bus. SharedFlow is an excellent choice for handling multiple subscribers and delivering events asynchronously.
+
+8. **Event Handling with Coroutines:**
+   - Leverages coroutines to handle events in a non-blocking manner. This ensures smooth communication between different apps components without impacting the overall performance.
+
 
 ## MVVM Architecture
 
